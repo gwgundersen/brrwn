@@ -1,0 +1,23 @@
+{
+  "name": "brrwn",
+  "version": "0.0.0",
+  "private": true,
+  "description": "A small web application using Babel, React, Redux, webpack, and Node.js",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.4.3",
+    "express": "^4.4.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gwgundersen/brrwn.git"
+  },
+  "engines" : {
+    "node" : "0.12.x"
+  }
+}

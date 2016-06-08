@@ -1,0 +1,11 @@
+{
+  "name": "brrwn",
+  "description": "A small web application using Babel, React, Redux, webpack, and Node.js",
+  "repository": "https://github.com/gwgundersen/brrwn",
+  "logo": "",
+  "website": "",
+  "success_url": "/",
+  "env" : {
+    "BUILDPACK_URL": "https://github.com/heroku/heroku-buildpack-nodejs.git"
+  }
+}
