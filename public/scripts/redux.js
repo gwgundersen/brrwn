@@ -10,6 +10,32 @@ const { createStore } = Redux;
 const { Provider } = ReactRedux;
 
 
+/* Action creators - common pattern in Redux applications
+ * -------------------------------------------------------------------------- */
+let nextTodoId = 0;
+const addTodo = (text) => {
+  return {
+    type: 'ADD_TODO',
+    id: nextTodoId++,
+    text: text
+  };
+};
+
+const setVisibilityFilters = (filter) => {
+  return {
+    type: 'SET_VISIBILITY_FILTER',
+    filter
+  };
+};
+
+const toggleTodo = (id) => {
+  return {
+    type: 'TOGGLE_TODO',
+    id
+  };
+};
+
+
 /* Link components
  * -------------------------------------------------------------------------- */
 const Link = ({ active, children, onClick }) => {
@@ -38,11 +64,7 @@ const mapStateToLinkProps = (state, ownProps) => {
 const mapDispatchToLinkProps = (dispatch, ownProps) => {
   return {
     onClick: () => {
-      console.log(ownProps);
-      dispatch({
-        type: 'SET_VISIBILITY_FILTER',
-        filter: ownProps.filter
-      });
+      dispatch(setVisibilityFilters(ownProps.filter));
     }
   }
 };
@@ -94,10 +116,7 @@ const mapStateToTodoListProps = (state) => {
 const mapDispatchToTodoListProps = (dispatch) => {
   return {
     onTodoClick: (id) => {
-      dispatch({
-        type: 'TOGGLE_TODO',
-        id
-      })
+      dispatch(toggleTodo(id));
     }
   }
 };
@@ -122,7 +141,6 @@ const getVisibleTodos = (todos, filter) => {
 
 /* AddTodo component
  * -------------------------------------------------------------------------- */
-let nextTodoId = 0;
 
 let AddTodo = ({ dispatch }) => {
   let input;
@@ -130,11 +148,7 @@ let AddTodo = ({ dispatch }) => {
     <div>
       <input ref={node => {input = node;}} />
       <button onClick={() => {
-        dispatch({
-          type: 'ADD_TODO',
-          id: nextTodoId++,
-          text: input.value
-        });
+        dispatch(addTodo(input.value));
         input.value = '';
       }}>
         Add Todo
